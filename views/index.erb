@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>you know you wanna press it</title>
+    <meta name="viewport" content="width=device-width" />
+    <style>
+      html {
+        color-scheme: light dark;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      #button {
+        -webkit-touch-callout: none;
+        -webkit-user-drag: none;
+        max-width: 100%;
+      }
+    </style>
+    <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+  </head>
+  <body>
+    <img
+      id="button"
+      src="/up.png"
+      draggable="false"
+      _="
+        on pointerdown or touchstart
+          set my src to '/down.png'
+          fetch /go with method:'POST'
+          put the result into #counter
+          wait for a mouseup or mouseleave or touchend or touchcancel -- that oughta do it
+          set my src to '/up.png'
+        end
+        "
+    />
+    <h1>times used: <span id="counter"><%= uses %></span></h1>
+  </body>
+</html>
